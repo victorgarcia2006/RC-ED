@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django.utils import timezone
+from rest_framework import status
 from .models import ExperimentData
 from .serializer import ExperimentSerializer
 import math
@@ -21,10 +22,35 @@ class ExperimentDataView(viewsets.ModelViewSet):
     queryset = ExperimentData.objects.all()
     serializer_class = ExperimentSerializer
     def create(self, request):
-        voltage = request.data.get("voltage")
-        ts = timezone.now()
-        ExperimentData.objects.create(timestamp=ts, voltage=voltage)
-        return Response({"status": "ok", "timestamp": ts, "voltage": voltage})
+        data = request.data  # Espera una lista de objetos [{t, v}, ...]
+
+        # Validación simple
+        if not isinstance(data, list):
+            return Response({"error": "El cuerpo de la solicitud debe ser una lista de objetos."}, status=status.HTTP_400_BAD_REQUEST)
+
+        registros = []
+        for item in data:
+            try:
+                tiempo_ms = item.get("t")
+                voltaje = item.get("v")
+                if voltaje is None or tiempo_ms is None:
+                    continue
+
+                registro = ExperimentData(
+                    timestamp=timezone.now(),  # Puedes ajustar si quieres usar tiempo_ms
+                    voltage=voltaje
+                )
+                registros.append(registro)
+            except Exception as e:
+                print("Error procesando item:", e)
+
+        # Guardado masivo
+        ExperimentData.objects.bulk_create(registros)
+
+        return Response({
+            "status": "ok",
+            "registros_creados": len(registros)
+        }, status=status.HTTP_201_CREATED)
 
     def list(self, request):
         data = ExperimentData.objects.all().order_by("timestamp")
