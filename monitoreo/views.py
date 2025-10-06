@@ -34,7 +34,7 @@ class SimulationView(viewsets.ModelViewSet):
     def list(self, request):
         #h = float(request.GET.get("h", ro/20))
         #tmax = float(request.GET.get("tmax", 1.0))
-        h = ro/20
+        h = ro/10
         n = 100
         t=np.zeros(n+1)
         v=np.zeros(n+1)
