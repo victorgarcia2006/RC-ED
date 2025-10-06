@@ -37,7 +37,7 @@ class ExperimentDataView(viewsets.ModelViewSet):
                     continue
 
                 registro = ExperimentData(
-                    timestamp=timezone.now(),  # Puedes ajustar si quieres usar tiempo_ms
+                    timestamp=tiempo_ms,  # Puedes ajustar si quieres usar tiempo_ms
                     voltage=voltaje
                 )
                 registros.append(registro)
