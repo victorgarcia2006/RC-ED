@@ -36,8 +36,13 @@ class ExperimentDataView(viewsets.ModelViewSet):
                 if voltaje is None or tiempo_ms is None:
                     continue
 
+                try:
+                    time_converted = float(tiempo_ms) / 1000.0
+                except (TypeError, ValueError):
+                    time_converted = 0.0 
+
                 registro = ExperimentData(
-                    timems=tiempo_ms,  # Puedes ajustar si quieres usar tiempo_ms
+                    timems=time_converted,
                     voltage=voltaje
                 )
                 registros.append(registro)
