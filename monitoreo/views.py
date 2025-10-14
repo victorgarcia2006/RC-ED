@@ -37,7 +37,7 @@ class ExperimentDataView(viewsets.ModelViewSet):
                     continue
 
                 registro = ExperimentData(
-                    timestamp=tiempo_ms,  # Puedes ajustar si quieres usar tiempo_ms
+                    timems=tiempo_ms,  # Puedes ajustar si quieres usar tiempo_ms
                     voltage=voltaje
                 )
                 registros.append(registro)
@@ -53,8 +53,8 @@ class ExperimentDataView(viewsets.ModelViewSet):
         }, status=status.HTTP_201_CREATED)
 
     def list(self, request):
-        data = ExperimentData.objects.all().order_by("timestamp")
-        return Response([{"t": d.timestamp, "v": d.voltage} for d in data])
+        data = ExperimentData.objects.all().order_by("timems")
+        return Response([{"t": d.timems, "v": d.voltage} for d in data])
     
     def delete(self, request):
         """
