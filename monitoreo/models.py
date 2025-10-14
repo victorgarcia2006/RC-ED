@@ -12,18 +12,18 @@ class Experiment(models.Model):
 
 
 class ExperimentData(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timems = models.FloatField(help_text="Tiempo de medición en ms", default=0.0)
     voltage = models.FloatField(help_text="Voltaje medido en V")
 
     def __str__(self):
-        return f"Exp {self.timestamp} - {self.voltage:.2f} V"
+        return f"Exp {self.timems:.3f} ms - {self.voltage:.2f} V"
 
 
 class SimulationData(models.Model):
-    timestamp = models.FloatField(help_text="Tiempo de simulación en segundos")
+    timems = models.FloatField(help_text="Tiempo de simulación en segundos")
     voltage = models.FloatField(help_text="Voltaje calculado con Euler")
     h = models.FloatField(help_text="Paso usado en Euler (s)")
 
     def __str__(self):
-        return f"Sim t={self.timestamp:.3f} s - v={self.voltage:.2f} V"
+        return f"Sim t={self.timems:.3f} s - v={self.voltage:.2f} V"
 

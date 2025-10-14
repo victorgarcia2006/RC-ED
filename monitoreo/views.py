@@ -55,6 +55,17 @@ class ExperimentDataView(viewsets.ModelViewSet):
     def list(self, request):
         data = ExperimentData.objects.all().order_by("timestamp")
         return Response([{"t": d.timestamp, "v": d.voltage} for d in data])
+    
+    def delete(self, request):
+        """
+        Elimina todos los registros de la base de datos.
+        """
+        count = ExperimentData.objects.count()
+        ExperimentData.objects.all().delete()
+        return Response(
+            {"status": "deleted", "count": count},
+            status=status.HTTP_200_OK
+        )
 
 class SimulationView(viewsets.ModelViewSet):
     def list(self, request):
