@@ -49,10 +49,8 @@ $$
 
 Donde:
 
-$$
 - \( V_0 \): voltaje inicial
 - \( \tau = RC \): constante de tiempo
-$$
 ---
 
 ## 🧮 Método de Euler (Simulación)
@@ -65,11 +63,9 @@ $$
 
 Donde:
 
-$$
 - \( h \): tamaño de paso
 - \( v_n \): valor actual
 - \( v_{n+1} \): siguiente valor aproximado
-$$
 
 Este método permite generar una aproximación numérica de la curva exponencial.
 
