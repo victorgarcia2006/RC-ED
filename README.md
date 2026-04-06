@@ -64,11 +64,13 @@ v_{n+1} = v_n + h \cdot \left(-\frac{1}{RC} v_n\right)
 $$
 
 Donde:
+
 $$
 - \( h \): tamaño de paso
 - \( v_n \): valor actual
 - \( v_{n+1} \): siguiente valor aproximado
 $$
+
 Este método permite generar una aproximación numérica de la curva exponencial.
 
 ---
