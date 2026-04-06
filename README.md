@@ -33,9 +33,9 @@ Un circuito RC está compuesto por:
 
 Cuando el capacitor se descarga, su comportamiento está gobernado por la **Ley de Voltajes de Kirchhoff**:
 
-\[
+$$
 RC \frac{dv(t)}{dt} + v(t) = 0
-\]
+$$
 
 ---
 
@@ -43,31 +43,32 @@ RC \frac{dv(t)}{dt} + v(t) = 0
 
 La solución de esta ecuación diferencial es:
 
-\[
+$$
 v(t) = V_0 e^{-\frac{t}{RC}}
-\]
+$$
 
 Donde:
 
+$$
 - \( V_0 \): voltaje inicial
 - \( \tau = RC \): constante de tiempo
-
+$$
 ---
 
 ## 🧮 Método de Euler (Simulación)
 
 Para simular la ecuación diferencial, utilizamos el **método de Euler**, que aproxima la solución de forma iterativa:
 
-\[
+$$
 v_{n+1} = v_n + h \cdot \left(-\frac{1}{RC} v_n\right)
-\]
+$$
 
 Donde:
-
+$$
 - \( h \): tamaño de paso
 - \( v_n \): valor actual
 - \( v_{n+1} \): siguiente valor aproximado
-
+$$
 Este método permite generar una aproximación numérica de la curva exponencial.
 
 ---
